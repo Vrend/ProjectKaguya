@@ -1,0 +1,23 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  font-size: 24px;
+  overflow: hidden;
+}
+li {
+  display: inline;
+  padding: 16px 28px;
+}
+a {
+  color: blue;
+  text-decoration: none;
+  text-align: center
+  padding: 40px 28px;
+}
+body {
+  text-align:center;
+  background-color:blue;
+  color:white;
+}
