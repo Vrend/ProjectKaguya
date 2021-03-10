@@ -17,6 +17,6 @@
     <br/>
     <h3>I'm still working on image uploads!</h3>
     <button>Upload Image</button>
-    <!-- Note to self, check permissions on /var/html/uploads/ -->
+    <!-- Note to self, check permissions on /var/www/html/uploads/ -->
   </body>
 </html>

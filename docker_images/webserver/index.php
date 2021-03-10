@@ -18,9 +18,9 @@
     <div id='content'>
       <?php
 
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+        // ini_set('display_errors', 1);
+        // ini_set('display_startup_errors', 1);
+        // error_reporting(E_ALL);
 
         if(!$link = mysql_connect('localhost', 'root', 'Tot@llyS3cUr3P@ssword!')) {
           echo "Cannot connect to database!";
@@ -29,20 +29,35 @@
           echo "Couldn't select table";
         }
 
-        $post = $_GET["post"];
+        if(!isset($_GET["post"]) || $_GET["post"] == "") {
+          $sql = "SELECT id FROM site order by id";
 
-        $sql = "SELECT * FROM site where id='$post'";
+          $result = mysql_query($sql, $link);
 
-        $result = mysql_query($sql, $link);
+          echo "<h4>List of Posts</h4>";
+          echo "<ul>";
 
-        if (!$result) {
-            echo "DB Error, could not query the database\n";
-            echo 'MySQL Error: ' . mysql_error();
-            exit;
+          while ($row = mysql_fetch_assoc($result)) {
+            echo "<li><a href='index.php?post={$row['id']}'>Post #" . $row['id'] . "</a></li>";
+          }
+          echo "</ul>";
         }
+        else {
+          $post = $_GET["post"];
 
-        while ($row = mysql_fetch_assoc($result)) {
-            echo $row['content'];
+          $sql = "SELECT * FROM site where id='$post'";
+
+          $result = mysql_query($sql, $link);
+
+          if (!$result) {
+              echo "DB Error, could not query the database\n";
+              echo 'MySQL Error: ' . mysql_error();
+              exit;
+          }
+
+          while ($row = mysql_fetch_assoc($result)) {
+              echo $row['content'];
+          }
         }
 
         mysql_free_result($result);
