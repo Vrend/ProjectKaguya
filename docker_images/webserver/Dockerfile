@@ -9,12 +9,7 @@ RUN apt-get install -y apache2 php5.6 php5.6-mysql mysql-server nano openssh-ser
 ADD init_db.sh /tmp/init_db.sh
 RUN chmod +x /tmp/init_db.sh
 RUN /tmp/init_db.sh
-ADD index.php /var/www/html/index.php
-ADD about.html /var/www/html/about.html
-ADD upload.php /var/www/html/upload.php
-ADD style.css /var/www/html/style.css
-RUN rm -f /var/www/html/index.html
-RUN echo "DirectoryIndex index.php" > /var/www/html/.htaccess
-RUN mkdir /var/www/html/uploads
-RUN chmod 777 /var/www/html/uploads
+COPY index.php about.html upload.php customer_service.html style.css plane.jpg oops.jpeg /var/www/html/
+RUN rm -f /var/www/html/index.html && echo "DirectoryIndex index.php" > /var/www/html/.htaccess
+RUN mkdir /var/www/html/uploads && chmod 777 /var/www/html/uploads
 ENTRYPOINT service apache2 start > /dev/null && service mysql start > /dev/null && bash

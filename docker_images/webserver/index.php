@@ -9,11 +9,11 @@
       <li><a href='index.php'>Home</a></li>
       <li><a href='about.html'>About Us</a></li>
       <li><a href='upload.php'>Upload</a></li>
-      <li><a href='#'>Customer Service</a></li>
+      <li><a href='customer_service.html'>Customer Service</a></li>
     </ul>
 
     <h1>Welcome to the Boeing Blog!</h1>
-    <img src='https://www.gannett-cdn.com/-mm-/eda357dd8751dcdcc72d351adb3b8d1bdcafcb38/c=0-129-2500-1535/local/-/media/2020/07/09/USATODAY/usatsports/boeing-737-max-on-tug-source-ba.jpg?width=660&height=372&fit=crop&format=pjpg&auto=webp'/>
+    <img src='plane.jpg'/>
     <hr>
     <div id='content'>
       <?php
