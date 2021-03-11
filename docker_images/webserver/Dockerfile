@@ -12,4 +12,5 @@ RUN /tmp/init_db.sh
 COPY index.php about.html upload.php customer_service.html style.css plane.jpg oops.jpeg /var/www/html/
 RUN rm -f /var/www/html/index.html && echo "DirectoryIndex index.php" > /var/www/html/.htaccess
 RUN mkdir /var/www/html/uploads && chmod 777 /var/www/html/uploads
-ENTRYPOINT service apache2 start > /dev/null && service mysql start > /dev/null && bash
+RUN chown www-data:www-data /var/www/html/*
+ENTRYPOINT service apache2 start > /dev/null 2>&1 && service mysql start > /dev/null && bash
