@@ -5,7 +5,7 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:ondrej/php
 RUN apt-get update -y
 RUN apt-get upgrade -y
-RUN apt-get install -y apache2 php5.6 php5.6-mysql mysql-server nano openssh-server
+RUN apt-get install -y apache2 php5.6 php5.6-mysql mysql-server nano openssh-server iputils iproute2
 ADD init_db.sh /tmp/init_db.sh
 RUN chmod +x /tmp/init_db.sh
 RUN /tmp/init_db.sh
