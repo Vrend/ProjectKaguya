@@ -1,0 +1,3 @@
+# files
+*.o
+/docker_images/target/src/main
