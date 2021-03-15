@@ -23,7 +23,7 @@ int main() {
 void unlock_system() {
   printf("Unlocking system...\n");
   locked = 0;
-  while(1);
+  while(1); // Block further sensor data input
 }
 
 void totally_secure_copy(char* input) {

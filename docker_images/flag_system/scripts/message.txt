@@ -1,0 +1,23 @@
+  Greetings,
+
+  A foreign agent, who we will refer to as Agent X, has stolen
+  classified information about the whereabouts of intelligence personnel
+  abroad. If this information gets out, the lives of these personnel
+  and their families are in danger.
+
+  Agent X has boarded a plane back to Germany with the classified data
+  on a flash drive. At this point, it is too late to intercept him,
+  and for diplomatic reasons, we can’t afford to shoot down the
+  plane or take direct action; that is where you come in.
+
+  Our sources indicate that the plane Agent X boarded is a new variant
+  of the Boeing 747, which has an autopilot system that relies on
+  environmental information collected by sensors hosted on a remote
+  system. If this remote system were to be breached, and the sensor
+  data were to be purposely manipulated, it could cause the autopilot
+  system to crash the plane.
+
+  Your mission, should you choose to accept: penetrate the remote
+  system, bypass any system protections, manipulate the sensor data,
+  and crash the plane. This should go without saying, but don’t get
+  caught: we don’t want this ‘incident’ coming back to us.
