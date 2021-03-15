@@ -3,4 +3,4 @@ RUN apk update && apk upgrade
 RUN apk add bash bash-completion
 COPY scripts/* /wrkdr/
 WORKDIR /wrkdr
-ENTRYPOINT bash
+ENTRYPOINT nc -lkp 4444 -e ./main.sh

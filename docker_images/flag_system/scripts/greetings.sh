@@ -1,5 +1,15 @@
 #!/bin/bash
-clear;
-echo " ";
-cat message.txt;
-echo " ";
+
+function delay_echo() {
+  while read line; do
+    echo "  $line"
+    sleep 0.25
+  done < $1
+}
+
+clear
+echo " "
+delay_echo "message.txt"
+echo " "
+echo "  Press any key to continue."
+read -rsn 1 dummy
