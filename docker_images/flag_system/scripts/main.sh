@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ "root" != "$USER" ] && exec sudo $0 "$@"
+
 function delay_echo() {
   while read line; do
     echo "  $line"
