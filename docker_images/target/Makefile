@@ -2,4 +2,4 @@ build:
 	docker build -t kaguya_target .
 
 run:
-	docker run -it --privileged --network wan kaguya_target
+	docker run --rm -it --name kaguya_target --privileged --network wan kaguya_target

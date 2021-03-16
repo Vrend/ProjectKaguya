@@ -4,4 +4,4 @@ build:
 	docker build -t kaguya_flag .
 
 run:
-	docker run -it --network wan -v ${current_dir}/SHARED:/wrkdr/SHARED kaguya_flag
+	docker run --rm -d -t --name kaguya_flag --network wan -v ${current_dir}/SHARED:/wrkdr/SHARED kaguya_flag
