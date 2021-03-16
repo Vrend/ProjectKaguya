@@ -1,6 +1,12 @@
-FROM itsthenetwork/alpine-ncat:latest
-RUN apk update && apk upgrade
-RUN apk add bash bash-completion
+FROM bitnami/minideb:stretch
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install -y nano telnetd xinetd
+RUN apt-get install -y ncurses-bin
+RUN adduser --disabled-password --gecos "" anonymous && chpasswd anonymous:a && passwd -d anonymous
+ADD telnet /etc/xinetd.d/telnet
 COPY scripts/* /wrkdr/
+RUN chmod -R 774 /wrkdr/*
+RUN mkdir /wrkdr/SHARED && chmod 777 /wrkdr/SHARED
+RUN echo "trap '' 2\ncd /wrkdr\nclear\nbash ./main.sh\nexit" >> /home/anonymous/.profile
 WORKDIR /wrkdr
-ENTRYPOINT nc -lkp 4444 -e ./main.sh
+ENTRYPOINT service xinetd start && bash
