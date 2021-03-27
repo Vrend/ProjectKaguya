@@ -9,7 +9,6 @@ RUN mkdir /home/paul/notes
 COPY note1 note2 note3 /home/paul/notes/
 RUN chown -R paul:paul /home/paul/notes/ && chmod +r /home/paul/notes/*
 RUN python3 /home/paul/encrypt.py /home/paul/notes/note1 7 4 && python3 /home/paul/encrypt.py /home/paul/notes/note2 7 4 && rm /home/paul/notes/note1 /home/paul/notes/note2
-#RUN passwd -d postgres && echo "postgres:postgres" | chpasswd
 RUN sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /etc/postgresql/12/main/postgresql.conf
 RUN sed -i "s/127.0.0.1\/32/all/g" /etc/postgresql/12/main/pg_hba.conf
 RUN sed -i "s/md5/trust/g" /etc/postgresql/12/main/pg_hba.conf
