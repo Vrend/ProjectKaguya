@@ -6,5 +6,3 @@ ADD 07-14-04-priv0.log 07-14-04-priv1.log /home/amanda/.irssi/logs/
 RUN chown -R amanda:amanda /home/amanda/.irssi/
 ADD hint.txt /
 ENTRYPOINT /usr/src/build/examples/ssh_server_fork --hostkey=/etc/ssh/ssh_host_rsa_key --ecdsakey=/etc/ssh/ssh_host_ecdsa_key --dsakey=/etc/ssh/ssh_host_dsa_key --rsakey=/etc/ssh/ssh_host_rsa_key -p 22 0.0.0.0
-#ENTRYPOINT bash
-#CMD ["-c" "/usr/src/build/examples/ssh_server_fork --hostkey=/etc/ssh/ssh_host_rsa_key --ecdsakey=/etc/ssh/ssh_host_ecdsa_key --dsakey=/etc/ssh/ssh_host_dsa_key --rsakey=/etc/ssh/ssh_host_rsa_key -p 22 0.0.0.0"]
