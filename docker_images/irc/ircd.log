@@ -1,0 +1,10 @@
+13:02:11;kyle;so how does the plane system get environmental information?
+13:03:19;amanda;the system takes input from the scanners via UDP
+13:03:34;paul;can that be accessed remotely?
+13:03:59;amanda;no, its only on the loopback
+13:04:26;amanda;but the main interface is externally accessible
+13:05:01;kyle;is there a setting to set specific environmental values?
+13:05:22;paul;yes, set the locked variable to 0 and recompile
+13:05:43;paul;Careful not to have locked as 0 when running, someone could take down the plane!
+13:06:07;amanda;that's unlikely
+13:06:41;kyle;crazy to think about tho
