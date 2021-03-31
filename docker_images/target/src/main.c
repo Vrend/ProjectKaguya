@@ -139,31 +139,36 @@ void* handle_connection(void* args) {
 
   printf("Request from %s on port %d\n", ip, port);
 
+  int e;
+
   while(1) {
     bzero(read_buffer, 50);
     char* clear = "\033[H\033[J";
     char* prompt = "\n >> ";
 
-    write(fd, clear, strlen(clear));
+    e = send(fd, clear, strlen(clear), MSG_NOSIGNAL);
+    if(e < 0) {
+      break;
+    }
 
     char* output = gen_table(labels, target, actual);
-    write(fd, output, strlen(output));
+    send(fd, output, strlen(output), MSG_NOSIGNAL);
     free(output);
 
-    write(fd, prompt, strlen(prompt));
+    send(fd, prompt, strlen(prompt), MSG_NOSIGNAL);
 
-    int e = read(fd, read_buffer, 50);
+    e = read(fd, read_buffer, 50);
     if(e <= 0) {
       break;
     }
 
     if(strlen(read_buffer) > 0 && read_buffer[0] == 'q') {
       char* done = "Closing connection...\n";
-      write(fd, done, strlen(done));
+      send(fd, done, strlen(done), MSG_NOSIGNAL);
       break;
     }
 
-    //printf("%s\n", read_buffer);
+    printf("%s\n", read_buffer);
   }
 
 	close(fd);
