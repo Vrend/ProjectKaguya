@@ -21,6 +21,8 @@ int handle_input(char* input, int fd);
 void set_target(float* targets, char** labels, char* property, float value);
 int update_table(float* targets, float* actuals);
 
+void write_flag();
+
 typedef struct response_args {
 	int fd;
 	char ip[30];

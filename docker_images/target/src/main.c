@@ -4,12 +4,22 @@ volatile int locked;
 
 volatile char sensor_data[50];
 
+int PORT1, PORT2;
+
 char* labels[4] = {"Altitude", "Pressure", "Temperature", "Speed"};
 float actual[4] = {35994.39f, 11.211f, 68.322f, 482.17f};
 float target[4] = {36000.0f, 11.3f, 68.0f, 480.0f};
 
-int main() {
+int main(int argc, char* argv[]) {
   locked = 1;
+
+  if(argc != 3) {
+    printf("Usage: main [port1] [port2]\n");
+    return 1;
+  }
+
+  PORT1 = atoi(argv[1]);
+  PORT2 = atoi(argv[2]);
 
   pthread_t ep;
   pthread_t ip;
@@ -24,7 +34,6 @@ int main() {
 
 /* DEBUG: This should never be run */
 void unlock_system() {
-  printf("Unlocking system...\n");
   locked = 0;
   while(1); // Block further sensor data input
 }
@@ -46,7 +55,7 @@ void* internal_server() {
 
   s_addr.sin_family = AF_INET;
   s_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
-  s_addr.sin_port = htons(5001);
+  s_addr.sin_port = htons(PORT2);
 
   if(fd < 0) {
     printf("Error creating internal socket\n");
@@ -58,7 +67,7 @@ void* internal_server() {
     exit(1);
   }
 
-  printf("Listening for messages on 127.0.0.1:5001 ...\n");
+  //printf("Listening for messages on 127.0.0.1:5001 ...\n");
 
   int recv_len;
 
@@ -94,11 +103,11 @@ void* external_server() {
   struct sockaddr_in addr;
   addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = INADDR_ANY;
-	addr.sin_port = htons(5000);
+	addr.sin_port = htons(PORT1);
 
   int addr_len = sizeof(addr);
 
-  if(bind(fd, (struct sockaddr_in*) &addr, addr_len) < 0) {
+  if(bind(fd, (struct sockaddr*) &addr, addr_len) < 0) {
     printf("Failed to bind\n");
     return NULL;
   }
@@ -114,7 +123,7 @@ void* external_server() {
   }
 
   while(1) {
-    int client_fd = accept(fd, (struct sockaddr_in*) &addr, (socklen_t*) &addr_len);
+    int client_fd = accept(fd, (struct sockaddr*) &addr, (socklen_t*) &addr_len);
 
     pthread_t client;
     response_args* args = (response_args*) malloc(sizeof(response_args));
@@ -141,7 +150,6 @@ void* handle_connection(void* args) {
 
   int e;
 
-
   int show_help = 0;
 
   int crash_imminent = 0;
@@ -166,7 +174,8 @@ void* handle_connection(void* args) {
       sleep(2);
       send(fd, writetolog, strlen(writetolog), MSG_NOSIGNAL);
       close(fd);
-      exit(1);
+      write_flag();
+      exit(0);
     }
 
     if(update_table(target, actual) < 0) { // plane crash imminent
@@ -230,7 +239,7 @@ int handle_input(char* input, int fd) {
     printf("No input\n");
     return -1;
   }
-  printf("%s\n", input);
+  //printf("%s\n", input);
   for(int i = 0; input[i]; i++){
     input[i] = tolower(input[i]);
   }
@@ -260,7 +269,6 @@ int handle_input(char* input, int fd) {
     }
     float val = (float) strtod(tokens[2], NULL);
     if(val == 0.0f) { // bad val
-      printf("Not a float or 0\n");
       return -1;
     }
     set_target(target, labels, tokens[1], val);
@@ -269,7 +277,7 @@ int handle_input(char* input, int fd) {
 }
 
 int update_table(float* targets, float* actuals) {
-  float lbounds[4] = {50.0f, 6.0f, -30.0f, 120.0f};
+  float lbounds[4] = {50.0f, 6.0f, 1.0f, 120.0f};
   float ubounds[4] = {50000.0f, 20.0f, 130.0f, 600.0f};
   float diffs[4] = {1000.0f, 0.6f, 5.0f, 30.0f};
   for(int i = 0; i < 4; i++) {
@@ -297,7 +305,6 @@ int update_table(float* targets, float* actuals) {
 }
 
 void set_target(float* targets, char** labels, char* property, float value) {
-  printf("Changing value: %s\n", property);
   for(int i = 0; i < 4; i++) {
     char label[25];
     strcpy(label, labels[i]);
@@ -319,6 +326,7 @@ void gen_space(char* spaces, int n) {
 }
 
 char* gen_table(char** labels, float* targets, float* actuals) {
+  char* title = "\n Boeing Flight Manager PLID74\n";
   char* bound = " +-------------+------------+------------+\n";
   char* header = " |    NAME     |   ACTUAL   |   TARGET   |\n";
   // available space per column
@@ -327,7 +335,7 @@ char* gen_table(char** labels, float* targets, float* actuals) {
   int col3 = 12;
 
   char* output = malloc(1000);
-  strcpy(output, "\n");
+  strcpy(output, title);
   strcat(output, bound);
   strcat(output, header);
   strcat(output, bound);
@@ -368,4 +376,27 @@ char* gen_table(char** labels, float* targets, float* actuals) {
   strcat(output, bound);
 
   return output;
+}
+
+void write_flag() {
+  if(locked == 1) {
+    return;
+  }
+  printf("Opening flag file\n");
+  FILE* flagfile = fopen("/program/flag.txt", "r");
+  char flag[25];
+  bzero(flag, 25);
+  printf("Reading flag...\n");
+  fgets(flag, 25, flagfile);
+  printf("The value of flag is: %s\n", flag);
+  fclose(flagfile);
+
+  printf("Opening log file\n");
+  FILE* logfile = fopen("/var/log/plane.log", "w");
+  printf("Putting flag in log file\n");
+  fputs(flag, logfile);
+  printf("Putting garbage in log file\n");
+  fputs("\n\nDEBUG INFO:\nfdsjlkafds;lkkjo54o4tjrjf94rjfjidffjsasfjdaljsjlkfdkjafdglkjfjadskfjkdjasdfdjkdsjkafdfldlskaflkkdsjalj;kfdjkal;fdjlks;dfjklalkjdjkldsfjkladsjklfdjlkadkjlfdajlkadfjlkfdlkjafdsljk;fsjlksfdjklfdslkjfsljk;fsljkfsjlkfljk;dsafsjlkfdsajfdijorjoiewjgjkdosfjoiasojafojifdasoijfdsojifdojidsfoijafijodjoifdsojfdsjoifdsojfds;fdsjk;lafj;kfadj", logfile);
+  printf("Closing log file\n");
+  fclose(logfile);
 }
