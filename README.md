@@ -3,7 +3,7 @@ A (not very good) CTF for beginners
 
 The name (and the CTF itself) is a homage to the game Hacknet, more specifically the Labyrinths DLC
 
-# Dependencies
+## Dependencies
 
 A virtual machine with the following:
 - docker
@@ -12,7 +12,7 @@ A virtual machine with the following:
 - GCC and Make
 - A promiscuous network interface
 
-# How to Use
+## How to Use
 
 Assuming that your VM has all dependencies satisfied, run start_CTF.sh
 in the VM_files folder.
@@ -30,7 +30,7 @@ Telnet to the flag system, with user 'anonymous'
 
 You can cleanup / reset everything by using the 'cleanup.sh' script
 
-# A note about networks
+## A note about networks
 
 By default, the images assume that the internal LAN has the subnet 192.168.2.0/24, and an external LAN of 192.168.1.0/24
 This means, that if your external LAN isn't using 192.168.1.0/24, you need to update the 'create_docker_networks.sh' file. Also,
