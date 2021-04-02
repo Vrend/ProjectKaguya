@@ -2,6 +2,8 @@
 
 [ "root" != "$USER" ] && exec sudo $0 "$@"
 
+cd $(dirname $0)
+
 # Build docker images
 source ./build_images.sh
 
