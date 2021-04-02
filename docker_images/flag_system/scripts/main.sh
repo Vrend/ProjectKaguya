@@ -18,14 +18,28 @@ function handle_flag() {
       exit
       ;;
     g3tt1ngSt@rt3d)
+      source ./greetings2.sh
+      ;;
+    cUst0m3rS3rv1c34321413)
       echo " "
-      delay_echo "greetings2.txt"
+      delay_echo "customer_service.txt";
+      echo " "
+      ;;
+    0ut0fTh3Fry1ngP@n1nt0Th3F1r3)
+      echo " "
+      delay_echo "frying_pan.txt";
+      echo " "
+      ;;
+    sTr@ng3-p1@nz-1nD33d5123413)
+      echo " "
+      delay_echo "strange_plans.txt";
       echo " "
       ;;
     *)
       echo " "
       echo " That's not a valid flag, Agent. Don't waste our time."
       echo " "
+      ;;
   esac
 }
 

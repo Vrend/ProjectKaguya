@@ -1,0 +1,7 @@
+It looks like you found some sort of website being developed by an intern.
+Something tells me that the site is as well designed security-wise as it is
+graphically.
+
+The index page appears to be promising, but don't leave any stone unturned.
+It's likely that user input isn't very well sanitized.
+Their incompetence will be their downfall.

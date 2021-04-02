@@ -13,4 +13,6 @@ COPY web/* /var/www/html/
 RUN rm -f /var/www/html/index.html && echo "DirectoryIndex index.php" > /var/www/html/.htaccess
 RUN mkdir /var/www/html/uploads && chmod 777 /var/www/html/uploads
 RUN chown www-data:www-data /var/www/html/*
+COPY flag.txt /
+RUN chmod +r /flag.txt
 ENTRYPOINT service apache2 start > /dev/null 2>&1 && service mysql start > /dev/null && bash

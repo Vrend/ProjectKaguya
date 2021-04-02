@@ -1,0 +1,8 @@
+Excellent.
+
+Now that you have the credentials for the main system, the real mission
+begins. It's time to attack their plane system; it's a custom piece of
+software, so the tools you've probably been using so far won't be
+very helpful. But if we've learned anything, it's that these dolts can't
+program their way out of a paper bag. The monitoring program has to
+be getting sensor data somehow.

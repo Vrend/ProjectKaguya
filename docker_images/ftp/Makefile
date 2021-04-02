@@ -4,4 +4,4 @@ build:
 	umount src/
 
 run:
-	docker run --rm -it --network lan kaguya_ftp
+	docker run --rm -d -t --network lan kaguya_ftp

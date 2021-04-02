@@ -11,7 +11,7 @@ clear
 echo " "
 delay_echo "greetings.txt"
 echo " "
-echo "  Press any key to accept or CTRL^C to Decline."
+echo " Press any key to accept or CTRL^C to Decline."
 read -rsn 1 dummy
 clear
 echo " "
