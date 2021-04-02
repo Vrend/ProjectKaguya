@@ -1,4 +1,5 @@
 build:
+	mkdir src/
 	mount --bind ../target/src src/
 	docker build -t kaguya_ftp .
 	umount src/
