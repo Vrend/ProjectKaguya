@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ "root" != "$USER" ] && exec sudo $0 "$@"
+
 cd ../docker_images
 cd client_base && make build
 cd ..

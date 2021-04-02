@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ "root" != "$USER" ] && exec sudo $0 "$@"
+
 # Build docker images
 source ./build_images.sh
 
