@@ -39,7 +39,7 @@ their interfaces hardcoded in terms of their subnets, but I'm not sure.
 
 ## VM Image
 
-I have a virtualbox image prepared that can be imported. All that needs to be configured are the docker networks.
+I have a virtualbox image prepared that can be imported. All that needs to be configured are the docker networks, but be sure to pull the repository beforehand.
 
 The VM can be found here: https://mega.nz/file/iEYzFC7A#wRD-t1exKVeqOEQ3RwtlcFdzawh22y0jbYWrn8659Ds
 
