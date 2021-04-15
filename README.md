@@ -1,5 +1,5 @@
 # Project Kaguya
-A (not very good) CTF for beginners
+A CTF for beginners
 
 The name (and the CTF itself) is a homage to the game Hacknet, more specifically the Labyrinths DLC
 
@@ -36,3 +36,11 @@ By default, the images assume that the internal LAN has the subnet 192.168.2.0/2
 This means, that if your external LAN isn't using 192.168.1.0/24, you need to update the 'create_docker_networks.sh' file. Also,
 if you're using 192.168.2.0/24, be sure to change both docker networks to reflect this change. I don't believe any of the images have
 their interfaces hardcoded in terms of their subnets, but I'm not sure.
+
+## VM Image
+
+I have a virtualbox image prepared that can be imported. All that needs to be configured are the docker networks.
+
+The VM can be found here: https://mega.nz/file/iEYzFC7A#wRD-t1exKVeqOEQ3RwtlcFdzawh22y0jbYWrn8659Ds
+
+The credentials for the VM are: ```kaguya:by any means necessary```
