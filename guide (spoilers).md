@@ -36,7 +36,6 @@
     4. Exploit Host3 using samba for IRC log between Host1 and Host3 talking about his encryption algorithm
         1. [https://medium.com/@lucideus/sambacry-rce-exploit-lucideus-research-3a3e5bd9e17c](https://medium.com/@lucideus/sambacry-rce-exploit-lucideus-research-3a3e5bd9e17c)
         2. Exfiltrate notes and decrypt/decode for ssh account for plane system
-    5. Access FTP server using credentials found on host2 to see the source code of the plane system
 10. SSH into plane system with found login, and find server running on UDP port 5001 on loopback
 11. Use binary exploitation to set ‘locked’ to 0
     1. [https://www.tallan.com/blog/2019/04/04/exploring-buffer-overflows-in-c-part-two-the-exploit/](https://www.tallan.com/blog/2019/04/04/exploring-buffer-overflows-in-c-part-two-the-exploit/)
