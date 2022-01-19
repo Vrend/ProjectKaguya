@@ -1,0 +1,8 @@
+Well done.
+
+Now that you have a shell inside their LAN, you can use it to pivot
+into their network and attack machines that were previously unreachable.
+Look into meterpreter autoroutes and proxychains.
+
+For now, figure out how you can upload a meterpreter executable onto the
+web server.

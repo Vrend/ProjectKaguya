@@ -1,0 +1,9 @@
+Shell files go in /usr/local/bin
+
+Service files go in /etc/systemd/system
+
+KEEP IN HERE:
+build_images.sh
+cleanup.sh
+share_docker_ip.sh
+start_CTF.sh

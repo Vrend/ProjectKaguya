@@ -1,0 +1,9 @@
+  Welcome aboard, Agent.
+  From what we know, the main system has the IP IPOFMAINSYSTEM and it is
+  heavily defended. If it were just that system, I'm afraid there'd be little
+  hope in bringing down that plane.
+
+  Luckily for us, Boeing has a regional LAN that is Internet-accessible. The IP
+  of their Internet-facing router is IPOFROUTER. That system is where we suggest
+  you get started. Look for a weakness in an exposed service, penetrate the LAN,
+  and hopefully you'll find enough information to enter the main system.

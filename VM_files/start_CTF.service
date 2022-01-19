@@ -1,0 +1,8 @@
+[Unit]
+After=docker.service
+
+[Service]
+ExecStart=/home/kaguya/ProjectKaguya/VM_files/start_CTF.sh
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,5 @@
+# files
+*.o
+/docker_images/target/src/main
+/docker_images/flag_system/SHARED/*
+!/docker_images/flag_system/SHARED/.gitkeep

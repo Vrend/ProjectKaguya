@@ -1,0 +1,8 @@
+[Unit]
+After=docker.service
+
+[Service]
+ExecStart=ncat -lkp 4444 -e /usr/local/bin/docker_ip.sh
+
+[Install]
+WantedBy=default.target
